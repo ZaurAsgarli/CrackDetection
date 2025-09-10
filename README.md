@@ -1,61 +1,89 @@
-Conglomerate Concrete Crack Detection
-This project implements a deep learning-based crack detection system using semantic segmentation to identify cracks in concrete structures from images. It utilizes TensorFlow and image augmentation techniques for improved generalization.
+Crack Detection using U-Net
+Overview
 
-📂 Project Structure
-The dataset is assumed to be in a ZIP file and includes training and test images along with their corresponding masks.
+This project implements a convolutional neural network (U-Net) for automatic crack detection in concrete structures. The model is trained and evaluated on an image dataset containing concrete surfaces with and without cracks, along with corresponding segmentation masks. The goal is to detect and localize cracks in the images.
 
-Conglomerate Concrete Crack Detection/
+Repository Structure
+CrackDetection/
+├── CrackDetection.ipynb     # Main notebook (training and evaluation)
+├── requirements.txt         # Python dependencies
+├── data/                    # Dataset (already included in this repo)
+│   ├── Train/
+│   │   ├── images/
+│   │   └── masks/
+│   └── Test/
+│       ├── images/
+│       └── masks/
+└── README.md
+
+Dataset
+
+This project uses the Concrete Crack Dataset
+ created by Mert Kerem Tas.
+A copy of the dataset is included in this repository under the data/ folder for convenience.
+If you wish to download the dataset directly from Kaggle, please refer to the official dataset page.
+
+Dataset structure:
+
+data/
 ├── Train/
 │   ├── images/
 │   └── masks/
 └── Test/
     ├── images/
     └── masks/
-🚀 Features
-Custom data pipeline using TensorFlow for loading and preprocessing image-mask pairs.
 
-Data augmentation techniques including:
+Installation
 
-Random horizontal/vertical flips
+Clone the repository:
 
-Random brightness and contrast adjustments
+git clone https://github.com/ZaurAsgarli/CrackDetection.git
+cd CrackDetection
 
-Support for batching and prefetching with tf.data for optimized performance.
 
-🧠 Model Training
-Model training (not fully shown here) is expected to be done using U-Net or another semantic segmentation architecture using the prepared train_dataset and val_dataset.
+Create and activate a virtual environment (recommended):
 
-🛠️ Requirements
-Python 3.7+
+python -m venv venv
+source venv/bin/activate   # Linux/Mac
+venv\Scripts\activate      # Windows
 
-TensorFlow 2.x
 
-Google Colab (optional for notebook execution)
+Install dependencies:
 
-matplotlib (for visualization)
+pip install -r requirements.txt
 
-Install dependencies using:
+Usage
 
-pip install tensorflow matplotlib
-📊 Visualization
-Sample visualizations show side-by-side images and masks to inspect the alignment of predicted and actual regions.
+Ensure that the data/ folder is present in the repository (already included here).
 
-📦 How to Use
-Upload the ZIP dataset to Google Drive.
+Open the notebook:
 
-Mount the drive and unzip the dataset in your notebook.
+jupyter notebook CrackDetection.ipynb
 
-Run the notebook to load data, visualize samples, and train a model.
 
-📁 Notebook: CrackDetection.ipynb
-Contains all steps including:
+Run all cells to train and evaluate the model.
+The notebook includes data preprocessing, model training, evaluation, and visualization of predictions.
 
-Mounting Google Drive
+Requirements
 
-Dataset loading and preprocessing
+The main libraries used in this project are:
 
-Data augmentation
+TensorFlow
 
-Dataset preparation and batching
+NumPy
 
-Visualization
+Matplotlib
+
+All dependencies can be installed from requirements.txt.
+
+Results
+
+The U-Net model is trained with Binary Cross Entropy and Dice loss. The notebook provides visualization of:
+
+Input images
+
+Ground truth segmentation masks
+
+Predicted segmentation masks
+
+These results demonstrate the model’s ability to detect cracks in concrete images.
